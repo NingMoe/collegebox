@@ -1,0 +1,145 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<!-- Spring -->	
+	<context:property-placeholder location="classpath:application.properties"/>
+	
+	<!-- 定义上下文返回的消息的国际化 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
+		<property name="basename" value="classpath:messages_zh_CN"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+	
+	<!-- Spring Security -->	
+	<security:debug/>
+	
+	<!-- 配置不过滤的资源（静态资源及登录相关） --> 
+	<security:http pattern="/**/*.css" security="none"></security:http>
+	<security:http pattern="/**/*.jpg" security="none"></security:http>
+	<security:http pattern="/**/*.jpeg" security="none"></security:http>
+	<security:http pattern="/**/*.gif" security="none"></security:http>
+	<security:http pattern="/**/*.png" security="none"></security:http>
+	<security:http pattern="/**/*.js" security="none"></security:http>
+	<security:http pattern="/login.jsp" security="none"></security:http>
+	<security:http pattern="/getCode" security="none"></security:http>
+	<security:http pattern="/sessiontimeout" security="none"></security:http>
+	<!-- 不过滤测试内容 -->
+	<security:http pattern="/test/**" security="none"></security:http>
+	
+	<!-- 配置自定义登录 -->
+	<security:http access-decision-manager-ref="accessDecisionManager"  
+        entry-point-ref="authenticationEntryPoint">
+        <security:access-denied-handler ref="accessDeniedHandler"/>
+        <security:logout invalidate-session="true" logout-url="/logout" 
+        	logout-success-url="/login.jsp" />
+        <security:session-management session-authentication-strategy-ref="concurrentSessionControlStrategy" />
+        <security:custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
+        <security:custom-filter ref="captchaAuthenticaionFilter" position="FORM_LOGIN_FILTER"/>
+        <security:custom-filter ref="concurrencyFilter" position="CONCURRENT_SESSION_FILTER"/>
+        <security:csrf disabled="true"/>
+    </security:http>
+    
+    <!-- 定义登录页面 -->
+    <bean id="authenticationEntryPoint" class="com.collegebox.teacher.config.security.LoginUrlAuthenticationEntryPoint">  
+    	<property name="loginFormUrl" value="/sessiontimeout" />  
+	</bean>
+	
+	<!-- 自定义FORM_LOGIN_FILTER -->
+	<bean id="captchaAuthenticaionFilter" class="com.collegebox.teacher.config.security.CaptchaAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="authenticationFailureHandler" ref="authenticationFailureHandler" />
+		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
+		<property name="filterProcessesUrl" value="/login" />
+		<property name="sessionAuthenticationStrategy" ref="concurrentSessionControlStrategy" />
+	</bean>
+	
+	<!-- 定义权限不足处理程序 -->
+	<bean id="accessDeniedHandler" class="com.collegebox.teacher.config.security.RequestAccessDeniedHandler" />
+	
+	<!-- 使用数据库来管理URL -->
+	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="securityMetadataSource" ref="securityMetadataSource" />
+	</bean>
+	
+	<bean id="securityMetadataSource" class="com.collegebox.teacher.config.security.URLSecurityMetadataSource" />
+	
+	<!-- 验证失败后的处理-->
+	<bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login.jsp?login_error=1" />
+	</bean>
+	
+	<!-- 验证成功后的处理-->
+	<bean id="authenticationSuccessHandler" class="com.collegebox.teacher.config.security.SavedRequestLoginSuccessHandler">
+		<property name="defaultTargetUrl" value="/index" />
+		<property name="forwardToDestination" value="false" />
+		<property name="alwaysUseDefaultTargetUrl" value="true" />
+	</bean>
+	
+	<!-- 定义同一用户session最大值 -->
+	<bean id="concurrentSessionControlStrategy"
+		class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+	<constructor-arg>
+		<list>
+		<bean class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+			<constructor-arg ref="sessionRegistry"/>
+			<property name="maximumSessions" value="10" />
+			<property name="exceptionIfMaximumExceeded" value="true" />
+		</bean>
+		<bean class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy">
+		</bean>
+		<bean class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+			<constructor-arg ref="sessionRegistry"/>
+		</bean>
+		</list>
+	</constructor-arg>
+	</bean>
+	
+	<bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+	
+	<!-- 配置自定义权限服务 -->
+	<bean id="userDetailsService" class="com.collegebox.teacher.config.security.DefaultUserDetailsService" />
+	
+	<!-- 自定义session过期配置 -->
+	<bean id="concurrencyFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<constructor-arg name="expiredUrl" value="/sessiontimeout" />
+	</bean>
+	
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="authenticationProvider" />
+	</security:authentication-manager>
+	
+	<bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="hideUserNotFoundExceptions" value="false" />  
+    	<property name="userDetailsService" ref="userDetailsService" />
+    	<property name="messageSource" ref="messageSource" />
+	</bean>
+	
+	<!-- 自定义决策管理器及修改权限前缀 -->	
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>
+				<ref bean="authenticatedVoter"/>
+			</list>
+		</constructor-arg>
+		<property name="messageSource" ref="messageSource"></property>
+	</bean>
+	
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+		<property name="rolePrefix" value=""></property>
+	</bean>
+	
+	<bean id="authenticatedVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
+	
+</beans>
