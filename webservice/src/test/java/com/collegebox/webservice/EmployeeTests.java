@@ -29,57 +29,57 @@ public class EmployeeTests {
 	@Test
 	public void employeeTest() {
 		
-		Employee employee = new Employee();
-		employee.setUsername("tiancaizjzk");
-		employee.setPassword("zjzk1234");
-		employee.setFirstName("健");
-		employee.setLastName("赵");
-		employee.setEmail("xiaoyaopalading@sina.com");
-		
-		Role role1 = new Role();
-		role1.setMark("SUPER");
-		role1.setName("超级管理员");
-		role1.setDesc("拥有一切权限");
-		
-		Set<Role> set = new HashSet<Role>();
-		set.add(role1);
-		employee.setRoles(set);
-		
-		employeeRepository.save(employee);
-		
-		Employee employee2 = new Employee();
-		employee2.setUsername("tiancaizkzj");
-		employee2.setPassword("zkzj5678");
-		employee2.setFirstName("康");
-		employee2.setLastName("赵");
-		employee2.setEmail("dberzi@163.com");
-		
-		Role role2 = new Role();
-		role2.setMark("ADMIN");
-		role2.setName("管理员");
-		role2.setDesc("管理系统");
-		
-		Resource resource1 = new Resource();
-		resource1.setName("首页");
-		resource1.setPath("/index");
-		resource1.setType(Resource.ResourceType.URL);
-		resource1.setDesc("首页即首页");
-		
-		Set<Resource> resourceSet1 = new HashSet<Resource>();
-		resourceSet1.add(resource1);
-		role2.setResources(resourceSet1);
-		
-		Role role3 = new Role();
-		role3.setMark("TEACHER");
-		role3.setName("教师");
-		role3.setDesc("管理学生");
-		
-		Set<Role> set2 = new HashSet<Role>();
-		set2.add(role2);
-		set2.add(role3);
-		employee2.setRoles(set2);
-		
-		employeeRepository.save(employee2);
+//		Employee employee = new Employee();
+//		employee.setUsername("tiancaizjzk");
+//		employee.setPassword("zjzk1234");
+//		employee.setFirstName("健");
+//		employee.setLastName("赵");
+//		employee.setEmail("xiaoyaopalading@sina.com");
+//		
+//		Role role1 = new Role();
+//		role1.setMark("SUPER");
+//		role1.setName("超级管理员");
+//		role1.setDesc("拥有一切权限");
+//		
+//		Set<Role> set = new HashSet<Role>();
+//		set.add(role1);
+//		employee.setRoles(set);
+//		
+//		employeeRepository.save(employee);
+//		
+//		Employee employee2 = new Employee();
+//		employee2.setUsername("tiancaizkzj");
+//		employee2.setPassword("zkzj5678");
+//		employee2.setFirstName("康");
+//		employee2.setLastName("赵");
+//		employee2.setEmail("dberzi@163.com");
+//		
+//		Role role2 = new Role();
+//		role2.setMark("ADMIN");
+//		role2.setName("管理员");
+//		role2.setDesc("管理系统");
+//		
+//		Resource resource1 = new Resource();
+//		resource1.setName("首页");
+//		resource1.setPath("/index");
+//		resource1.setType(Resource.ResourceType.URL);
+//		resource1.setDesc("首页即首页");
+//		
+//		Set<Resource> resourceSet1 = new HashSet<Resource>();
+//		resourceSet1.add(resource1);
+//		role2.setResources(resourceSet1);
+//		
+//		Role role3 = new Role();
+//		role3.setMark("TEACHER");
+//		role3.setName("教师");
+//		role3.setDesc("管理学生");
+//		
+//		Set<Role> set2 = new HashSet<Role>();
+//		set2.add(role2);
+//		set2.add(role3);
+//		employee2.setRoles(set2);
+//		
+//		employeeRepository.save(employee2);
 		
 		long id = 1;
 		Employee curr_employee = employeeRepository.findOne(id);
