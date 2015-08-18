@@ -41,7 +41,7 @@ public class Resource {
 	private String desc;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
-				fetch = FetchType.EAGER)
+				fetch = FetchType.LAZY)
 	@JoinTable(name = "role_resource", 
 			   joinColumns = {@JoinColumn(name = "resource_id", referencedColumnName = "resource_id")},
 			   inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})

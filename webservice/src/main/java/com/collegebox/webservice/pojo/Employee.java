@@ -66,7 +66,7 @@ public class Employee {
 	private boolean credentialsNonExpired = true;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
-				fetch = FetchType.EAGER)
+				fetch = FetchType.LAZY)
 	@JoinTable(name = "employee_role", 
 			   joinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")},
 			   inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})

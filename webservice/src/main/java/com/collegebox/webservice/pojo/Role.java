@@ -35,7 +35,7 @@ public class Role {
 	private String desc;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
-				fetch = FetchType.EAGER)
+				fetch = FetchType.LAZY)
 	@JoinTable(name = "employee_role", 
 		   	   joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
 		   	   inverseJoinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")})
@@ -43,7 +43,7 @@ public class Role {
 	private Set<Employee> employees;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
-				fetch = FetchType.EAGER)
+				fetch = FetchType.LAZY)
 	@JoinTable(name = "role_resource", 
 		   	   joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
 		   	   inverseJoinColumns = {@JoinColumn(name = "resource_id", referencedColumnName = "resource_id")})
