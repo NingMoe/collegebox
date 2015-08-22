@@ -1,0 +1,102 @@
+{
+    "college": {
+	"_index": {
+            "enabled": true
+        },
+	"_id": {
+            "index": "not_analyzed",
+	    "store": "yes"
+        },
+        "_all": {
+            "analyzer": "ik",
+	    "indexAnalyzer": "ik",
+            "searchAnalyzer": "ik",
+	    "store": "yes"
+        },
+        "properties": {
+            "college_id": {
+                "type" : "long",
+		"store": "yes",
+                "boost" : 1,
+		"index": "not_analyzed",
+                "include_in_all" : false
+            },
+	    "college_name": {
+                "type" : "string",
+		"store": "yes",
+                "boost" : 9,
+                "term_vector" : "yes",
+                "analyzer" : "ik",
+		"indexAnalyzer": "ik",
+            	"searchAnalyzer": "ik",
+                "include_in_all" : true
+            },
+	    "college_area": {
+                "type" : "string",
+		"store": "yes",
+                "boost" : 8,
+                "term_vector" : "yes",
+                "analyzer" : "ik",
+		"indexAnalyzer": "ik",
+            	"searchAnalyzer": "ik",
+                "include_in_all" : true
+            },
+	    "college_ranking": {
+                "type" : "long",
+		"store": "yes",
+                "boost" : 2,
+                "include_in_all" : true
+            },
+	    "college_intro": {
+                "type" : "string",
+		"store": "yes",
+                "boost" : 7,
+                "term_vector" : "yes",
+                "analyzer" : "ik",
+		"indexAnalyzer": "ik",
+            	"searchAnalyzer": "ik",
+                "include_in_all" : true
+            },
+	    "college_surrounding": {
+                "type" : "string",
+		"store": "yes",
+                "boost" : 6,
+                "term_vector" : "yes",
+                "analyzer" : "ik",
+		"indexAnalyzer": "ik",
+            	"searchAnalyzer": "ik",
+                "include_in_all" : true
+            },
+	    "school_intro": {
+                "type" : "string",
+		"store": "yes",
+                "boost" : 5,
+                "term_vector" : "yes",
+                "analyzer" : "ik",
+		"indexAnalyzer": "ik",
+            	"searchAnalyzer": "ik",
+                "include_in_all" : true
+            },
+	    "major_intro": {
+                "type" : "string",
+		"store": "yes",
+                "boost" : 4,
+                "term_vector" : "yes",
+                "analyzer" : "ik",
+		"indexAnalyzer": "ik",
+            	"searchAnalyzer": "ik",
+                "include_in_all" : true
+            },
+	    "degree_requirements": {
+                "type" : "string",
+		"store": "yes",
+                "boost" : 3,
+                "term_vector" : "yes",
+                "analyzer" : "ik",
+		"indexAnalyzer": "ik",
+            	"searchAnalyzer": "ik",
+                "include_in_all" : true
+            }
+        }
+    }
+}
