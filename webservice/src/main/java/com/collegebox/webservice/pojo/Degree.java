@@ -3,6 +3,7 @@ package com.collegebox.webservice.pojo;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,10 +23,11 @@ public class Degree {
 	@Column(name = "degree_name", nullable = false, length = 50)
 	private String name;
 	
-	@Column(name = "major_requirements", length = 500)
+	@Column(name = "degree_requirements", length = 500)
 	private String requirements;
 	
-	@ManyToOne(cascade=CascadeType.REFRESH)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
+			   fetch = FetchType.LAZY)
 	@JoinColumn(name = "major_id")
 	private Major major;
 

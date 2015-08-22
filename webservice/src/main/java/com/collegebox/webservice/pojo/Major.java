@@ -32,7 +32,8 @@ public class Major {
 	@Column(name = "major_website", length = 200)
 	private String website;
 	
-	@ManyToOne(cascade=CascadeType.REFRESH)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
+			   fetch = FetchType.LAZY)
 	@JoinColumn(name = "school_id")
 	private School school;
 	
