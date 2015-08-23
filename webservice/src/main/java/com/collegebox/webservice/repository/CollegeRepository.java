@@ -2,7 +2,7 @@ package com.collegebox.webservice.repository;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.collegebox.webservice.pojo.College;
+import com.collegebox.webservice.pojo.jpa.College;
 
 public interface CollegeRepository extends PagingAndSortingRepository<College, Long> {
 

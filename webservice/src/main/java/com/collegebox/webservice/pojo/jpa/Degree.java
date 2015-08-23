@@ -1,4 +1,4 @@
-package com.collegebox.webservice.pojo;
+package com.collegebox.webservice.pojo.jpa;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

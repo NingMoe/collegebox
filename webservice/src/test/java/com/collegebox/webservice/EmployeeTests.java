@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.collegebox.webservice.pojo.Employee;
-import com.collegebox.webservice.pojo.Resource;
-import com.collegebox.webservice.pojo.Role;
+import com.collegebox.webservice.pojo.jpa.Employee;
+import com.collegebox.webservice.pojo.jpa.Resource;
+import com.collegebox.webservice.pojo.jpa.Role;
 import com.collegebox.webservice.repository.EmployeeRepository;
 import com.collegebox.webservice.repository.RoleRepository;
 import com.collegebox.webservice.Application;

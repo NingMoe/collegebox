@@ -1,6 +1,6 @@
 package com.collegebox.webservice.jsonrpc.employee;
 
-import com.collegebox.webservice.pojo.Employee;
+import com.collegebox.webservice.pojo.jpa.Employee;
 import com.googlecode.jsonrpc4j.JsonRpcParamName;
 import com.googlecode.jsonrpc4j.JsonRpcService;
 

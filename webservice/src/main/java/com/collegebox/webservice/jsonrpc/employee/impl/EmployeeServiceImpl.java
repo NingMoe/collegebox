@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.collegebox.webservice.pojo.Employee;
+import com.collegebox.webservice.pojo.jpa.Employee;
 import com.collegebox.webservice.repository.EmployeeRepository;
 import com.collegebox.webservice.jsonrpc.employee.EmployeeService;
 

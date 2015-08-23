@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.collegebox.webservice.pojo.College;
-import com.collegebox.webservice.pojo.Degree;
-import com.collegebox.webservice.pojo.Major;
-import com.collegebox.webservice.pojo.School;
+import com.collegebox.webservice.pojo.jpa.College;
+import com.collegebox.webservice.pojo.jpa.Degree;
+import com.collegebox.webservice.pojo.jpa.Major;
+import com.collegebox.webservice.pojo.jpa.School;
 import com.collegebox.webservice.repository.DegreeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
