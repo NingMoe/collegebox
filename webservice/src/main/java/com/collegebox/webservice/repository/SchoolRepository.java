@@ -1,9 +1,12 @@
 package com.collegebox.webservice.repository;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.collegebox.webservice.pojo.jpa.School;
+import com.collegebox.webservice.pojo.School;
 
-public interface SchoolRepository extends PagingAndSortingRepository<School, Long> {
+@Transactional
+public interface SchoolRepository extends JpaRepository<School, Long>, JpaSpecificationExecutor<School> {
 
 }

@@ -1,12 +1,16 @@
 package com.collegebox.webservice.repository;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.collegebox.webservice.pojo.jpa.Employee;
+import com.collegebox.webservice.pojo.Employee;
 
-public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
+@Transactional
+public interface EmployeeRepository extends JpaRepository<Employee, Long>, JpaSpecificationExecutor<Employee> {
 	
-	Employee findByUsername(@Param("username") String username);
+	Long countByUsername(String username);
+	
+	Employee findByUsername(String username);
 
 }

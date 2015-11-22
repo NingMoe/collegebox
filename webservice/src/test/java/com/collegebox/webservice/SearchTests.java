@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.collegebox.webservice.jsonrpc.elasticsearch.SearchService;
-import com.collegebox.webservice.pojo.elasticsearch.College;
-import com.collegebox.webservice.pojo.elasticsearch.CollegeResponse;
+import com.collegebox.webservice.service.elasticsearch.SearchService;
+import com.collegebox.webservice.model.elasticsearch.College;
+import com.collegebox.webservice.model.elasticsearch.CollegeResponse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

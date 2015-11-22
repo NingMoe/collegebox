@@ -1,7 +1,7 @@
 package com.collegebox.webservice;
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.collegebox.webservice.pojo.jpa.Employee;
-import com.collegebox.webservice.pojo.jpa.Resource;
-import com.collegebox.webservice.pojo.jpa.Role;
 import com.collegebox.webservice.repository.EmployeeRepository;
 import com.collegebox.webservice.repository.RoleRepository;
 import com.collegebox.webservice.Application;
+import com.collegebox.webservice.pojo.Employee;
+import com.collegebox.webservice.pojo.Resource;
+import com.collegebox.webservice.pojo.Role;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -84,7 +84,7 @@ public class EmployeeTests {
 		long id = 1;
 		Employee curr_employee = employeeRepository.findOne(id);
 		System.out.println(curr_employee.getUsername());
-		Set<Role> curr_set = curr_employee.getRoles();
+		List<Role> curr_set = curr_employee.getRoles();
 		for(Role role : curr_set) {
 			System.out.println("Mark:" + role.getMark());
 		}
@@ -92,7 +92,7 @@ public class EmployeeTests {
 		id = 2;
 		Employee curr_employee2 = employeeRepository.findOne(id);
 		System.out.println(curr_employee2.getUsername());
-		Set<Role> curr_set2 = curr_employee2.getRoles();
+		List<Role> curr_set2 = curr_employee2.getRoles();
 		for(Role role : curr_set2) {
 			System.out.println("Mark:" + role.getMark());
 		}
