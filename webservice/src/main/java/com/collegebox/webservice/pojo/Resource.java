@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "resource")
+@Table(name = "c_resource")
 public class Resource {
 	
 	@Id
@@ -42,7 +42,7 @@ public class Resource {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 				fetch = FetchType.LAZY)
-	@JoinTable(name = "role_resource", 
+	@JoinTable(name = "c_role_resource", 
 			   joinColumns = {@JoinColumn(name = "resource_id", referencedColumnName = "resource_id")},
 			   inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
 	@JsonIgnore

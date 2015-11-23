@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "agency")
+@Table(name = "c_agency")
 public class Agency {
 	
 	@Id
@@ -47,7 +47,7 @@ public class Agency {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 			fetch = FetchType.LAZY)
-	@JoinTable(name = "student_agency", 
+	@JoinTable(name = "c_student_agency", 
 	   	   joinColumns = {@JoinColumn(name = "agency_id", referencedColumnName = "agency_id")},
 	   	   inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")})
 	private List<Student> students;

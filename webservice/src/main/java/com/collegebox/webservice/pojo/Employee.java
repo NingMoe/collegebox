@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +25,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "c_employee")
 public class Employee {
 	
 	@Id
@@ -82,7 +83,7 @@ public class Employee {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 				fetch = FetchType.LAZY)
-	@JoinTable(name = "employee_role", 
+	@JoinTable(name = "c_employee_role", 
 			   joinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")},
 			   inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
 	private List<Role> roles;
@@ -94,10 +95,13 @@ public class Employee {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 			fetch = FetchType.LAZY)
-	@JoinTable(name = "employee_team", 
+	@JoinTable(name = "c_employee_team", 
 		   joinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")},
 		   inverseJoinColumns = {@JoinColumn(name = "team_id", referencedColumnName = "team_id")})
 	private List<Team> teams;
+	
+	@OneToMany(mappedBy="employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<TeamDoc> teamDocs;
 
 	public Long getId() {
 		return id;
@@ -241,6 +245,14 @@ public class Employee {
 
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
+	}
+
+	public List<TeamDoc> getTeamDocs() {
+		return teamDocs;
+	}
+
+	public void setTeamDocs(List<TeamDoc> teamDocs) {
+		this.teamDocs = teamDocs;
 	}
 
 }

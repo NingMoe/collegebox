@@ -24,7 +24,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "student")
+@Table(name = "c_student")
 public class Student {
 	
 	@Id
@@ -49,6 +49,27 @@ public class Student {
 	
 	@Column(name = "student_email", nullable = false, length = 200)
 	private String email;
+	
+	@Column(name = "student_primary_country", length = 50)
+	private String primaryCountry;
+	
+	@Column(name = "student_secondary_country", length = 50)
+	private String secondaryCountry;
+	
+	@Column(name = "student_abord_time", length = 50)
+	private String abordTime;
+	
+	@Column(name = "student_curr_major", length = 50)
+	private String currMajor;
+	
+	@Column(name = "student_curr_college", length = 50)
+	private String currCollege;
+	
+	@Column(name = "student_curr_grade", length = 50)
+	private String currGrade;
+	
+	@Column(name = "student_gpa")
+	private Float gpa;
 	
 	@Column(name = "student_portrait", length = 500)
 	private String portrait;
@@ -82,20 +103,32 @@ public class Student {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 			fetch = FetchType.LAZY)
-	@JoinTable(name = "student_agency", 
+	@JoinTable(name = "c_student_agency", 
 		   joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")},
 		   inverseJoinColumns = {@JoinColumn(name = "agency_id", referencedColumnName = "agency_id")})
 	private List<Agency> agencies;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 			fetch = FetchType.LAZY)
-	@JoinTable(name = "student_team", 
+	@JoinTable(name = "c_student_team", 
 		   joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")},
 		   inverseJoinColumns = {@JoinColumn(name = "team_id", referencedColumnName = "team_id")})
 	private List<Team> teams;
 	
 	@OneToMany(mappedBy="student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<InvitationCode> invitationCodes;
+	
+	@OneToMany(mappedBy="student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Follow> follows;
+	
+	@OneToMany(mappedBy="student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<TargetCollege> targetColleges;
+	
+	@OneToMany(mappedBy="student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<StudentDoc> studentDocs;
+	
+	@OneToMany(mappedBy="student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<TeamDoc> teamDocs;
 
 	public Long getId() {
 		return id;
@@ -239,6 +272,94 @@ public class Student {
 
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
+	}
+
+	public String getPrimaryCountry() {
+		return primaryCountry;
+	}
+
+	public void setPrimaryCountry(String primaryCountry) {
+		this.primaryCountry = primaryCountry;
+	}
+
+	public String getSecondaryCountry() {
+		return secondaryCountry;
+	}
+
+	public void setSecondaryCountry(String secondaryCountry) {
+		this.secondaryCountry = secondaryCountry;
+	}
+
+	public String getAbordTime() {
+		return abordTime;
+	}
+
+	public void setAbordTime(String abordTime) {
+		this.abordTime = abordTime;
+	}
+
+	public String getCurrMajor() {
+		return currMajor;
+	}
+
+	public void setCurrMajor(String currMajor) {
+		this.currMajor = currMajor;
+	}
+
+	public String getCurrCollege() {
+		return currCollege;
+	}
+
+	public void setCurrCollege(String currCollege) {
+		this.currCollege = currCollege;
+	}
+
+	public String getCurrGrade() {
+		return currGrade;
+	}
+
+	public void setCurrGrade(String currGrade) {
+		this.currGrade = currGrade;
+	}
+
+	public Float getGpa() {
+		return gpa;
+	}
+
+	public void setGpa(Float gpa) {
+		this.gpa = gpa;
+	}
+
+	public List<Follow> getFollows() {
+		return follows;
+	}
+
+	public void setFollows(List<Follow> follows) {
+		this.follows = follows;
+	}
+
+	public List<TargetCollege> getTargetColleges() {
+		return targetColleges;
+	}
+
+	public void setTargetColleges(List<TargetCollege> targetColleges) {
+		this.targetColleges = targetColleges;
+	}
+
+	public List<StudentDoc> getStudentDocs() {
+		return studentDocs;
+	}
+
+	public void setStudentDocs(List<StudentDoc> studentDocs) {
+		this.studentDocs = studentDocs;
+	}
+
+	public List<TeamDoc> getTeamDocs() {
+		return teamDocs;
+	}
+
+	public void setTeamDocs(List<TeamDoc> teamDocs) {
+		this.teamDocs = teamDocs;
 	}
 
 }

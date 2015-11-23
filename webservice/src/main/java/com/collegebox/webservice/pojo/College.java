@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "college")
+@Table(name = "c_college")
 public class College {
 	
 	@Id
@@ -47,6 +47,9 @@ public class College {
 	
 	@OneToMany(mappedBy="college", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<School> schools;
+	
+	@OneToMany(mappedBy="college", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<TargetCollege> targetColleges;
 
 	public Long getId() {
 		return id;
@@ -126,6 +129,14 @@ public class College {
 
 	public void setSchools(List<School> schools) {
 		this.schools = schools;
+	}
+
+	public List<TargetCollege> getTargetColleges() {
+		return targetColleges;
+	}
+
+	public void setTargetColleges(List<TargetCollege> targetColleges) {
+		this.targetColleges = targetColleges;
 	}
 
 }

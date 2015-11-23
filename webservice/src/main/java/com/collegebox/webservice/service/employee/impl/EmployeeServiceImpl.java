@@ -1,5 +1,7 @@
 package com.collegebox.webservice.service.employee.impl;
 
+import java.util.List;
+
 import javax.jws.WebService;
 
 import org.apache.cxf.feature.Features;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
 import com.collegebox.webservice.pojo.Employee;
+import com.collegebox.webservice.pojo.Role;
+import com.collegebox.webservice.pojo.TeamDoc;
 import com.collegebox.webservice.repository.EmployeeRepository;
 import com.collegebox.webservice.service.email.EmailService;
 import com.collegebox.webservice.service.employee.EmployeeService;
@@ -71,6 +75,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void resetPassword(String newPassword) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Employee findOne(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRoles(List<Role> roles) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public TeamDoc uploadTeamDoc(TeamDoc teamDoc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

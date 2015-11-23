@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "invitation_code")
+@Table(name = "c_invitation_code")
 public class InvitationCode {
 	
 	@Id

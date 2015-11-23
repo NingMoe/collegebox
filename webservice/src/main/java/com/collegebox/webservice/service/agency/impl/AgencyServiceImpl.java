@@ -45,4 +45,10 @@ public class AgencyServiceImpl implements AgencyService {
 		agencyRepository.delete(id);
 	}
 
+	@Override
+	public Agency findOne(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "email_log")
+@Table(name = "c_email_log")
 public class EmailLog {
 	
 	@Id

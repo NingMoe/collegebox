@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,7 +23,7 @@ import org.springframework.data.annotation.CreatedDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "team")
+@Table(name = "c_team")
 public class Team {
 	
 	@Id
@@ -44,17 +45,20 @@ public class Team {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 			fetch = FetchType.LAZY)
-	@JoinTable(name = "student_team", 
+	@JoinTable(name = "c_student_team", 
 	   	   joinColumns = {@JoinColumn(name = "team_id", referencedColumnName = "team_id")},
 	   	   inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")})
 	private List<Student> students;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 			fetch = FetchType.LAZY)
-	@JoinTable(name = "employee_team", 
+	@JoinTable(name = "c_employee_team", 
 	   	   joinColumns = {@JoinColumn(name = "team_id", referencedColumnName = "team_id")},
 	   	   inverseJoinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")})
 	private List<Employee> employees;
+	
+	@OneToMany(mappedBy="team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<TeamDoc> teamDocs;
 
 	public Long getId() {
 		return id;
@@ -94,6 +98,22 @@ public class Team {
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public List<TeamDoc> getTeamDocs() {
+		return teamDocs;
+	}
+
+	public void setTeamDocs(List<TeamDoc> teamDocs) {
+		this.teamDocs = teamDocs;
 	}
 
 }

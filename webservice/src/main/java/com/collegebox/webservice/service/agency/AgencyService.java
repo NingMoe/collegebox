@@ -10,5 +10,7 @@ public interface AgencyService {
 	public void editBasicInfo(Agency agency) throws CollegeBoxException;
 	
 	public void delete(Long id);
+	
+	public Agency findOne(Long id);
 
 }

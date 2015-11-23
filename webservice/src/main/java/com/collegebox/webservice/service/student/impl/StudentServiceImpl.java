@@ -1,12 +1,18 @@
 package com.collegebox.webservice.service.student.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
+import com.collegebox.webservice.pojo.Follow;
 import com.collegebox.webservice.pojo.Student;
+import com.collegebox.webservice.pojo.StudentDoc;
+import com.collegebox.webservice.pojo.TargetCollege;
+import com.collegebox.webservice.pojo.TeamDoc;
 import com.collegebox.webservice.repository.StudentRepository;
 import com.collegebox.webservice.service.email.EmailService;
 import com.collegebox.webservice.service.student.StudentService;
@@ -81,6 +87,36 @@ public class StudentServiceImpl implements StudentService {
 	public Student findOne(Long id) throws CollegeBoxException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public StudentDoc uploadStudentDoc(StudentDoc studentDoc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TeamDoc uploadTeamDoc(TeamDoc teamDoc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void joinAgency(String codeValue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTargetColleges(List<TargetCollege> targetColleges) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFollows(List<Follow> follows) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
