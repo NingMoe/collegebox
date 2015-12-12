@@ -49,7 +49,7 @@ public class UserTest {
 		user1.setEmployee(employee);
 		
 		Role role2 = new Role();
-		role2.setMark(Authorities.ROLE_USER.name());
+		role2.setMark(Authorities.ROLE_STUDENT.name());
 		role2.setName("学生");
 		
 		List<Role> roleList2 = new ArrayList<Role>();

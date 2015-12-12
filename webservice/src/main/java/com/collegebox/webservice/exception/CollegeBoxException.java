@@ -20,9 +20,17 @@ public class CollegeBoxException extends IllegalArgumentException {
 	public final static int NickNameRequired = -40005;
 	public final static int EmailRequired = -40006;
 	public final static int NameRequired = -40007;
+	public final static int IdRequired = -40008;
+	public final static int NewPasswordRequired = -40009;
+	public final static int UrlRequired = -40010;
+	public final static int TypeRequired = -40011;
+	public final static int PathRequired = -40012;
+	public final static int MarkRequired = -40013;
 	
 	public final static int UsernameInvalid = -50001;
 	public final static int NameInvalid = -50002;
+	public final static int PasswordInvalid = -50003;
+	public final static int EmailInvalid = -50004;
 	
 	protected int code;
 	
@@ -52,11 +60,27 @@ public class CollegeBoxException extends IllegalArgumentException {
 			return "email required.";
 		case NameRequired:
 			return "name required.";
+		case IdRequired:
+			return "id required.";
+		case NewPasswordRequired:
+			return "new password required.";
+		case UrlRequired:
+			return "url required.";
+		case TypeRequired:
+			return "type required.";
+		case PathRequired:
+			return "path required.";
+		case MarkRequired:
+			return "mark required.";
 			
 		case UsernameInvalid:
 			return "username invalid.";
 		case NameInvalid:
 			return "name invalid.";
+		case PasswordInvalid:
+			return "password invalid.";
+		case EmailInvalid:
+			return "email invalid.";
 			
 		case SystemBusy:
 			return "system busy.";

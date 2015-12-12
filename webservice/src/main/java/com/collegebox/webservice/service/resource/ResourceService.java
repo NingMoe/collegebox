@@ -2,13 +2,16 @@ package com.collegebox.webservice.service.resource;
 
 import java.util.List;
 
+import javax.jws.WebService;
+
 import com.collegebox.webservice.pojo.Resource;
 
+@WebService
 public interface ResourceService {
 	
-	public Resource add(Resource resource);
+	public void add(Resource resource);
 	
-	public Resource edit(Resource resource);
+	public void edit(Resource resource);
 	
 	public void delete(Long id);
 	

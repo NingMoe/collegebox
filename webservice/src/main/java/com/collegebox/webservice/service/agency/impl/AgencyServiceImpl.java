@@ -1,5 +1,8 @@
 package com.collegebox.webservice.service.agency.impl;
 
+import javax.jws.WebService;
+
+import org.apache.cxf.feature.Features;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,6 +15,8 @@ import com.collegebox.webservice.service.agency.AgencyService;
 import com.collegebox.webservice.util.AssertUtil;
 
 @Service
+@WebService(endpointInterface = "com.collegebox.webservice.service.agency.AgencyService", serviceName = "agencyService")
+@Features(features = "org.apache.cxf.feature.LoggingFeature")
 public class AgencyServiceImpl implements AgencyService {
 	
 	@Autowired
@@ -42,13 +47,15 @@ public class AgencyServiceImpl implements AgencyService {
 	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
+		AssertUtil.notNull(id, CollegeBoxException.IdRequired);
 		agencyRepository.delete(id);
 	}
 
 	@Override
 	public Agency findOne(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		AssertUtil.notNull(id, CollegeBoxException.IdRequired);
+		return agencyRepository.findOne(id);
 	}
 
 }

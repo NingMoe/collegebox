@@ -18,8 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.collegebox.webservice.model.email.Email;
-import com.collegebox.webservice.pojo.Employee;
-import com.collegebox.webservice.pojo.Student;
+import com.collegebox.webservice.pojo.User;
 import com.collegebox.webservice.service.email.EmailService;
 
 @Service
@@ -105,15 +104,22 @@ public class EmailServiceImpl implements EmailService {
 
 	@Override
 	@Async
-	public void sendStudentRegisterEmail(Student student) {
+	public void sendStudentRegisterEmail(String email, String url) {
 		// TODO Auto-generated method stub
 		logger.info("异步发送学生注册邮件，测试日志......成功！请完善发送代码");
 	}
 
 	@Override
-	public void sendEmployeeRegisterEmail(Employee employee) {
+	@Async
+	public void sendForgotPasswordEmail(User user, String url) {
 		// TODO Auto-generated method stub
-		logger.info("异步发送职员注册邮件，测试日志......成功！请完善发送代码");
+		logger.info("异步发送忘记密码邮件，测试日志......成功！请完善发送代码");
+	}
+
+	@Override
+	public void sendSuccessRegisterEmail(User user) {
+		// TODO Auto-generated method stub
+		logger.info("异步发送注册成功邮件，测试日志......成功！请完善发送代码");
 	}
 
 }

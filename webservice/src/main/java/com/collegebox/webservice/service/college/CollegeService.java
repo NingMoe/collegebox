@@ -1,14 +1,12 @@
 package com.collegebox.webservice.service.college;
 
-import com.collegebox.webservice.model.elasticsearch.CollegeResponse;
-import com.googlecode.jsonrpc4j.JsonRpcParamName;
-import com.googlecode.jsonrpc4j.JsonRpcService;
+import javax.jws.WebService;
 
-@SuppressWarnings("deprecation")
-@JsonRpcService("/rpc/CollegeService")
+import com.collegebox.webservice.model.elasticsearch.CollegeResponse;
+
+@WebService
 public interface CollegeService {
 	
-	public CollegeResponse searchColleges(@JsonRpcParamName("text") String text, 
-			@JsonRpcParamName("from") int from, @JsonRpcParamName("size") int size) throws Exception;
+	public CollegeResponse searchColleges(String text, int from, int size) throws Exception;
 
 }

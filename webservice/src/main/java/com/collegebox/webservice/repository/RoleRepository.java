@@ -9,4 +9,6 @@ import com.collegebox.webservice.pojo.Role;
 @Transactional
 public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificationExecutor<Role> {
 	
+	Role findByMark(String mark);
+	
 }

@@ -22,5 +22,12 @@ public class RestController {
 	public String hello() {
 		return "Hello!";
 	}
+	
+	@GET
+	@Path("/secure/hello")
+	@Produces({MediaType.TEXT_HTML})
+	public String securedHello() {
+		return "Secured Hello!";
+	}
 
 }
