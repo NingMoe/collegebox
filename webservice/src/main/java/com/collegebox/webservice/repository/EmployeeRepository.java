@@ -9,8 +9,4 @@ import com.collegebox.webservice.pojo.Employee;
 @Transactional
 public interface EmployeeRepository extends JpaRepository<Employee, Long>, JpaSpecificationExecutor<Employee> {
 	
-	Long countByUsername(String username);
-	
-	Employee findByUsername(String username);
-
 }

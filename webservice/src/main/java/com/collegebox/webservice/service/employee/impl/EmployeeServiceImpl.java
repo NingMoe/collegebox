@@ -31,15 +31,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee add(Employee employee) throws CollegeBoxException {
 		// TODO Auto-generated method stub
-		AssertUtil.notNull(employee.getUsername(), CollegeBoxException.UsernameRequired);
-		AssertUtil.notNull(employee.getPassword(), CollegeBoxException.PasswordRequired);
-		AssertUtil.notNull(employee.getFirstName(), CollegeBoxException.FirstNameRequired);
-		AssertUtil.notNull(employee.getLastName(), CollegeBoxException.LastNameRequired);
-		AssertUtil.notNull(employee.getNickName(), CollegeBoxException.NickNameRequired);
-		AssertUtil.notNull(employee.getEmail(), CollegeBoxException.EmailRequired);
+		AssertUtil.notNull(employee.getUser().getUsername(), CollegeBoxException.UsernameRequired);
+		AssertUtil.notNull(employee.getUser().getPassword(), CollegeBoxException.PasswordRequired);
+		AssertUtil.notNull(employee.getUser().getFirstName(), CollegeBoxException.FirstNameRequired);
+		AssertUtil.notNull(employee.getUser().getLastName(), CollegeBoxException.LastNameRequired);
+		AssertUtil.notNull(employee.getUser().getNickName(), CollegeBoxException.NickNameRequired);
+		AssertUtil.notNull(employee.getUser().getEmail(), CollegeBoxException.EmailRequired);
 		
-		AssertUtil.isTrue(employeeRepository.countByUsername(employee.getUsername()) == 0, 
-				CollegeBoxException.UsernameInvalid);
+//		AssertUtil.isTrue(employeeRepository.countByUsername(employee.getUser().getUsername()) == 0, 
+//				CollegeBoxException.UsernameInvalid);
 		
 		Employee registeredEmployee = employeeRepository.save(employee);
 		emailService.sendEmployeeRegisterEmail(registeredEmployee);

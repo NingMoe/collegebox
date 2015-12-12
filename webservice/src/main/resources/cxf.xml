@@ -12,9 +12,9 @@
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-    <jaxws:endpoint id="employeeService" implementor="com.collegebox.webservice.service.employee.impl" address="/employeeService" />
+    <jaxws:endpoint id="employeeService" implementor="com.collegebox.webservice.service.employee.impl.EmployeeServiceImpl" address="/employeeService" />
     
-    <bean id="collegeBoxApp" class="com.xwtec.controller.RestController" />
+    <bean id="collegeBoxApp" class="com.collegebox.webservice.controller.RestController" />
     
     <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
     
@@ -33,7 +33,7 @@
     	
 	    <jaxrs:providers>
 	        <ref bean="jsonProvider"/>
-	        <bean class="com.webservice.collegebox.exception.CollegeBoxExceptionHandler"/>
+	        <bean class="com.collegebox.webservice.exception.CollegeBoxExceptionHandler"/>
 	    </jaxrs:providers>
     </jaxrs:server>
        

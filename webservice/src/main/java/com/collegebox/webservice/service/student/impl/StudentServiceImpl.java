@@ -31,15 +31,15 @@ public class StudentServiceImpl implements StudentService {
 	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public Student register(Student student) throws CollegeBoxException {
 		// TODO Auto-generated method stub
-		AssertUtil.notNull(student.getUsername(), CollegeBoxException.UsernameRequired);
-		AssertUtil.notNull(student.getPassword(), CollegeBoxException.PasswordRequired);
-		AssertUtil.notNull(student.getFirstName(), CollegeBoxException.FirstNameRequired);
-		AssertUtil.notNull(student.getLastName(), CollegeBoxException.LastNameRequired);
-		AssertUtil.notNull(student.getNickName(), CollegeBoxException.NickNameRequired);
-		AssertUtil.notNull(student.getEmail(), CollegeBoxException.EmailRequired);
+		AssertUtil.notNull(student.getUser().getUsername(), CollegeBoxException.UsernameRequired);
+		AssertUtil.notNull(student.getUser().getPassword(), CollegeBoxException.PasswordRequired);
+		AssertUtil.notNull(student.getUser().getFirstName(), CollegeBoxException.FirstNameRequired);
+		AssertUtil.notNull(student.getUser().getLastName(), CollegeBoxException.LastNameRequired);
+		AssertUtil.notNull(student.getUser().getNickName(), CollegeBoxException.NickNameRequired);
+		AssertUtil.notNull(student.getUser().getEmail(), CollegeBoxException.EmailRequired);
 		
-		AssertUtil.isTrue(studentRepository.countByUsername(student.getUsername()) == 0, 
-				CollegeBoxException.UsernameInvalid);
+//		AssertUtil.isTrue(studentRepository.countByUsername(student.getUser().getUsername()) == 0, 
+//				CollegeBoxException.UsernameInvalid);
 		
 		Student registeredStudent = studentRepository.save(student);
 		emailService.sendStudentRegisterEmail(registeredStudent);

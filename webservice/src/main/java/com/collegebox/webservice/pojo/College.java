@@ -49,7 +49,7 @@ public class College {
 	private List<School> schools;
 	
 	@OneToMany(mappedBy="college", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	public List<TargetCollege> targetColleges;
+	private List<TargetCollege> targetColleges;
 
 	public Long getId() {
 		return id;

@@ -58,7 +58,7 @@ public class Team {
 	private List<Employee> employees;
 	
 	@OneToMany(mappedBy="team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	public List<TeamDoc> teamDocs;
+	private List<TeamDoc> teamDocs;
 
 	public Long getId() {
 		return id;

@@ -14,6 +14,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.collegebox.webservice.model.email.Email;
@@ -21,6 +22,7 @@ import com.collegebox.webservice.pojo.Employee;
 import com.collegebox.webservice.pojo.Student;
 import com.collegebox.webservice.service.email.EmailService;
 
+@Service
 public class EmailServiceImpl implements EmailService {
 	
 	private static final Log logger = LogFactory.getLog(EmailServiceImpl.class);

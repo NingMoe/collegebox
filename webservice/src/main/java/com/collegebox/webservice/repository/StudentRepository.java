@@ -8,7 +8,5 @@ import com.collegebox.webservice.pojo.Student;
 
 @Transactional
 public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
-	
-	Long countByUsername(String username);
 
 }

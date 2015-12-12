@@ -36,11 +36,11 @@ public class Role {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 				fetch = FetchType.LAZY)
-	@JoinTable(name = "c_employee_role", 
+	@JoinTable(name = "c_user_role", 
 		   	   joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
-		   	   inverseJoinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")})
+		   	   inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")})
 	@JsonIgnore
-	private List<Employee> employees;
+	private List<User> users;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 				fetch = FetchType.LAZY)
@@ -81,12 +81,12 @@ public class Role {
 		this.desc = desc;
 	}
 
-	public List<Employee> getEmployees() {
-		return employees;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	public List<Resource> getResources() {
