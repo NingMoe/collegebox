@@ -1,13 +1,16 @@
 package com.collegebox.webservice.service.invitationcode;
 
-import java.util.List;
+import javax.jws.WebService;
 
-import com.collegebox.webservice.pojo.InvitationCode;
+import com.collegebox.webservice.exception.CollegeBoxException;
 
+@WebService
 public interface InvitationCodeService {
 	
-	public List<InvitationCode> gererateInvitaitonCode(Integer counts, Long agencyId);
+	public void gererateInvitaitonCode(Integer counts, Long agencyId);
 	
-	public void inviteStudent(Long id, Long studentId);
+	public void inviting(Long id) throws CollegeBoxException;
+	
+	public void inviteStudent(Long id, Long studentId) throws CollegeBoxException;
 
 }

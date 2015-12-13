@@ -11,12 +11,18 @@
    
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-
-    <jaxws:endpoint id="employeeService" implementor="com.collegebox.webservice.service.employee.impl.EmployeeServiceImpl" address="/employeeService" />
-    
-    <bean id="collegeBoxApp" class="com.collegebox.webservice.controller.RestController" />
     
     <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
+
+    <jaxws:endpoint id="agencyService" implementor="com.collegebox.webservice.service.agency.impl.AgencyServiceImpl" address="/agencyService" />
+    <jaxws:endpoint id="employeeService" implementor="com.collegebox.webservice.service.employee.impl.EmployeeServiceImpl" address="/employeeService" />
+    <jaxws:endpoint id="invitationCodeService" implementor="com.collegebox.webservice.service.invitationcode.impl.InvitationCodeServiceImpl" address="/invitationCodeService" />
+    <jaxws:endpoint id="resourceService" implementor="com.collegebox.webservice.service.resource.impl.ResourceServiceImpl" address="/resourceService" />
+    <jaxws:endpoint id="roleService" implementor="com.collegebox.webservice.service.role.impl.RoleServiceImpl" address="/roleService" />
+    <jaxws:endpoint id="studentService" implementor="com.collegebox.webservice.service.student.impl.StudentServiceImpl" address="/studentService" />
+    <jaxws:endpoint id="userService" implementor="com.collegebox.webservice.service.user.impl.UserServiceImpl" address="/userService" />
+    
+    <bean id="collegeBoxApp" class="com.collegebox.webservice.controller.RestController" />
     
     <jaxrs:server id="collegeBoxServer" address="/rest">
     	<jaxrs:serviceBeans>

@@ -20,5 +20,7 @@ public interface EmployeeService {
 	public void setRoles(Long id, List<Role> roles);
 	
 	public TeamDoc uploadTeamDoc(TeamDoc teamDoc);
+	
+	public List<Employee> findAll();
 
 }

@@ -8,5 +8,7 @@ import com.collegebox.webservice.pojo.InvitationCode;
 
 @Transactional
 public interface InvitationCodeRepository extends JpaRepository<InvitationCode, Long>, JpaSpecificationExecutor<InvitationCode> {
+	
+	int countByCodeValue(String codeValue);
 
 }

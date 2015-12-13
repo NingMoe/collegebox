@@ -7,6 +7,8 @@ import javax.jws.WebService;
 import org.apache.cxf.feature.Features;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
 import com.collegebox.webservice.pojo.Role;
@@ -23,6 +25,7 @@ public class RoleServiceImpl implements RoleService {
 	RoleRepository roleRepository;
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void add(Role role) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(role.getName(), CollegeBoxException.NameRequired);
@@ -32,6 +35,7 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void edit(Role role) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(role.getId(), CollegeBoxException.IdRequired);
@@ -42,6 +46,7 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(id, CollegeBoxException.IdRequired);

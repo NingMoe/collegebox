@@ -1,10 +1,14 @@
 package com.collegebox.webservice.service.user.impl;
 
+import java.util.List;
+
 import javax.jws.WebService;
 
 import org.apache.cxf.feature.Features;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
 import com.collegebox.webservice.pojo.User;
@@ -25,12 +29,14 @@ public class UserServiceImpl implements UserService {
 	EmailService emailService;
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		userRepository.delete(id);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void editPassword(Long id, String currPassword, String newPassword) throws CollegeBoxException {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(id, CollegeBoxException.IdRequired);
@@ -46,6 +52,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void forgetPasswordEmail(String email, String url) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(email, CollegeBoxException.EmailRequired);
@@ -61,6 +68,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void resetPassword(Long id, String newPassword) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(id, CollegeBoxException.IdRequired);
@@ -85,10 +93,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void editBasicInfo(User user) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(user.getId(), CollegeBoxException.IdRequired);
 		userRepository.editBasicInfo(user);
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return userRepository.findAll();
 	}
 
 }

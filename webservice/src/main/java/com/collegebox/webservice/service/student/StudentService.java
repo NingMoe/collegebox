@@ -27,10 +27,10 @@ public interface StudentService {
 	
 	public TeamDoc uploadTeamDoc(TeamDoc teamDoc);
 	
-	public void joinAgency(String codeValue);
-	
 	public void setTargetColleges(List<TargetCollege> targetColleges);
 	
 	public void setFollows(List<Follow> follows);
+	
+	public List<Student> findAll();
 
 }

@@ -31,6 +31,8 @@ public class CollegeBoxException extends IllegalArgumentException {
 	public final static int NameInvalid = -50002;
 	public final static int PasswordInvalid = -50003;
 	public final static int EmailInvalid = -50004;
+	public final static int InvitationCodeInvalid = -50005;
+	public final static int StudentInvalid = -50006;
 	
 	protected int code;
 	
@@ -81,6 +83,10 @@ public class CollegeBoxException extends IllegalArgumentException {
 			return "password invalid.";
 		case EmailInvalid:
 			return "email invalid.";
+		case InvitationCodeInvalid:
+			return "invitation code invalid.";
+		case StudentInvalid:
+			return "student invalid.";
 			
 		case SystemBusy:
 			return "system busy.";

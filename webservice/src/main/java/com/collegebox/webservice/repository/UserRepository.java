@@ -3,6 +3,7 @@ package com.collegebox.webservice.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.collegebox.webservice.pojo.User;
@@ -37,8 +38,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	int countByEmail(String email);
 	
 	@Modifying
-	@Query("update User u set u.firstName = ?1.firstName, u.lastName = ?1.lastName, u.portrait = ?1.portrait,"
-			+ "u.nickName = ?1.nickName, u.mobile = ?1.mobile where u.id = ?1.id")
-	int editBasicInfo(User user);
+	@Query("update User u set u.firstName = :#{#user.firstName}, u.lastName = :#{#user.lastName}, u.portrait = :#{#user.portrait},"
+			+ "u.nickName = :#{#user.nickName}, u.mobile = :#{#user.mobile} where u.id = :#{#user.id}")
+	int editBasicInfo(@Param("user") User user);
 
 }

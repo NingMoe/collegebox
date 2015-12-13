@@ -7,6 +7,8 @@ import javax.jws.WebService;
 import org.apache.cxf.feature.Features;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
 import com.collegebox.webservice.pojo.Employee;
@@ -30,6 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	UserRepository userRepository;
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public Employee add(User user) throws CollegeBoxException {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(user.getUsername(), CollegeBoxException.UsernameRequired);
@@ -59,6 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void setRoles(Long id, List<Role> roles) {
 		// TODO Auto-generated method stub
 		if (roles != null && roles.size() > 0) {
@@ -73,9 +77,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public TeamDoc uploadTeamDoc(TeamDoc teamDoc) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Employee> findAll() {
+		// TODO Auto-generated method stub
+		return employeeRepository.findAll();
 	}
 
 }

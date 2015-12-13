@@ -1,5 +1,7 @@
 package com.collegebox.webservice.service.user;
 
+import java.util.List;
+
 import javax.jws.WebService;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
@@ -21,5 +23,7 @@ public interface UserService {
 	public int countByEmail(String email);
 	
 	public void editBasicInfo(User user);
+	
+	public List<User> findAll();
 
 }

@@ -7,6 +7,8 @@ import javax.jws.WebService;
 import org.apache.cxf.feature.Features;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
 import com.collegebox.webservice.pojo.Resource;
@@ -23,6 +25,7 @@ public class ResourceServiceImpl implements ResourceService {
 	ResourceRepository resourceRepository;
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void add(Resource resource) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(resource.getName(), CollegeBoxException.NameRequired);
@@ -33,6 +36,7 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void edit(Resource resource) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(resource.getId(), CollegeBoxException.IdRequired);
@@ -44,6 +48,7 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(id, CollegeBoxException.IdRequired);

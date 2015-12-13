@@ -90,6 +90,7 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void editBasicInfo(Student student) throws CollegeBoxException {
 		// TODO Auto-generated method stub
 		AssertUtil.notNull(student.getId(), CollegeBoxException.IdRequired);
@@ -104,33 +105,37 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public StudentDoc uploadStudentDoc(StudentDoc studentDoc) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public TeamDoc uploadTeamDoc(TeamDoc teamDoc) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void joinAgency(String codeValue) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void setTargetColleges(List<TargetCollege> targetColleges) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
 	public void setFollows(List<Follow> follows) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Student> findAll() {
+		// TODO Auto-generated method stub
+		return studentRepository.findAll();
 	}
 	
 }
