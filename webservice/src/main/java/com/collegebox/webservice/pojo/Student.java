@@ -48,7 +48,7 @@ public class Student {
 	private String currGrade;
 	
 	@Column(name = "student_gpa")
-	private Float gpa;
+	private Double gpa;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, 
 			fetch = FetchType.LAZY)
@@ -143,11 +143,11 @@ public class Student {
 		this.currGrade = currGrade;
 	}
 
-	public Float getGpa() {
+	public Double getGpa() {
 		return gpa;
 	}
 
-	public void setGpa(Float gpa) {
+	public void setGpa(Double gpa) {
 		this.gpa = gpa;
 	}
 

@@ -6,7 +6,6 @@ import javax.jws.WebService;
 
 import com.collegebox.webservice.exception.CollegeBoxException;
 import com.collegebox.webservice.pojo.Employee;
-import com.collegebox.webservice.pojo.Role;
 import com.collegebox.webservice.pojo.TeamDoc;
 import com.collegebox.webservice.pojo.User;
 
@@ -17,7 +16,7 @@ public interface EmployeeService {
 	
 	public Employee findOne(Long id);
 	
-	public void setRoles(Long id, List<Role> roles);
+	public void setRoles(Long employeeId, List<String> roleIds);
 	
 	public TeamDoc uploadTeamDoc(TeamDoc teamDoc);
 	

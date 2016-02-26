@@ -63,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
 		if (role == null) {
 			role = new Role();
 			role.setName("学生");
-			role.setMark("Authorities.ROLE_STUDENT.name()");
+			role.setMark(Authorities.ROLE_STUDENT.name());
 			role.setDesc("学生");
 			role = roleRepository.save(role);
 		}

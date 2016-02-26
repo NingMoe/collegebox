@@ -117,6 +117,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
+	@Async
 	public void sendSuccessRegisterEmail(User user) {
 		// TODO Auto-generated method stub
 		logger.info("异步发送注册成功邮件，测试日志......成功！请完善发送代码");

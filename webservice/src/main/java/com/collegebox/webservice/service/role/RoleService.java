@@ -9,6 +9,10 @@ import com.collegebox.webservice.pojo.Role;
 @WebService
 public interface RoleService {
 	
+	public Role findOne(Long id);
+	
+	public Role findByMark(String mark);
+	
 	public void add(Role role);
 	
 	public void edit(Role role);

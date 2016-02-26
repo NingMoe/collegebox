@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED,  rollbackFor = Exception.class)
-	public void setRoles(Long id, List<Role> roles) {
+	public void setRoles(Long employeeId, List<String> roleIds) {
 		// TODO Auto-generated method stub
 		if (roles != null && roles.size() > 0) {
 			for (Role role : roles) {

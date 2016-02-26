@@ -31,6 +31,9 @@ public class RoleServiceImpl implements RoleService {
 		AssertUtil.notNull(role.getName(), CollegeBoxException.NameRequired);
 		AssertUtil.notNull(role.getMark(), CollegeBoxException.MarkRequired);
 		
+		AssertUtil.isTrue(roleRepository.countByMark(role.getMark()) == 0, CollegeBoxException.MarkInvalid);
+		AssertUtil.isTrue(roleRepository.countByMark(role.getName()) == 0, CollegeBoxException.NameInvalid);
+		
 		roleRepository.save(role);
 	}
 
@@ -41,6 +44,18 @@ public class RoleServiceImpl implements RoleService {
 		AssertUtil.notNull(role.getId(), CollegeBoxException.IdRequired);
 		AssertUtil.notNull(role.getName(), CollegeBoxException.NameRequired);
 		AssertUtil.notNull(role.getMark(), CollegeBoxException.MarkRequired);
+		
+		Role db_role = roleRepository.findOne(role.getId());
+		
+		int countByMark = roleRepository.countByMark(role.getMark());
+		AssertUtil.isTrue(
+				countByMark == 0 || countByMark > 0 && db_role.getMark().equals(role.getMark()), 
+				CollegeBoxException.MarkInvalid);
+		
+		int countByName = roleRepository.countByName(role.getName());
+		AssertUtil.isTrue(
+				countByName == 0 || countByName > 0 && db_role.getName().equals(role.getName()), 
+				CollegeBoxException.NameInvalid);
 		
 		roleRepository.save(role);
 	}
@@ -57,6 +72,20 @@ public class RoleServiceImpl implements RoleService {
 	public List<Role> findAll() {
 		// TODO Auto-generated method stub
 		return roleRepository.findAll();
+	}
+
+	@Override
+	public Role findOne(Long id) {
+		// TODO Auto-generated method stub
+		AssertUtil.notNull(id, CollegeBoxException.IdRequired);
+		return roleRepository.findOne(id);
+	}
+
+	@Override
+	public Role findByMark(String mark) {
+		// TODO Auto-generated method stub
+		AssertUtil.notNull(mark, CollegeBoxException.MarkRequired);
+		return roleRepository.findByMark(mark);
 	}
 
 }
